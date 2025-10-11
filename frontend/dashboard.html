@@ -3,39 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - Botica</title>
+  <title>Dashboard - Botica Nova Salud</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-  <h2>Dashboard - Botica</h2>
-
-  <div id="estadisticas" class="stats">
-    <div class="stat-item">
-      <h3>Ventas del Día</h3>
-      <p id="ventasHoy">Cargando...</p>
+  <header>
+    <h1>Dashboard</h1>
+    <div class="button-group">
+      <button onclick="window.location.href='productos.html'" class="btn-secondary">Ver Productos</button>
+      <button onclick="window.location.href='ventas.html'" class="btn-secondary">Ver Ventas</button>
+      <button onclick="window.location.href='clientes.html'" class="btn-secondary">Ver Clientes</button>
     </div>
-    <div class="stat-item">
-      <h3>Productos con Stock Bajo</h3>
-      <p id="productosBajoStock">Cargando...</p>
-    </div>
-    <div class="stat-item">
-      <h3>Productos Más Vendidos</h3>
-      <ul id="productosMasVendidos">
-        <!-- Los productos más vendidos se cargarán aquí -->
-      </ul>
-    </div>
-    <div class="stat-item">
-      <h3>Alertas No Leídas</h3>
-      <p id="alertasPendientes">Cargando...</p>
-    </div>
-  </div>
+  </header>
 
-  <div class="actions">
-    <button onclick="window.location.href='ventas.html'">Ver Ventas</button>
-    <button onclick="window.location.href='productos.html'">Gestionar Productos</button>
-  </div>
+  <main>
+    <h2>Métricas del Día</h2>
+    <div id="metrics" class="metrics-container">
+      <!-- Las métricas se agregarán aquí dinámicamente -->
+    </div>
+  </main>
 
-  <script src="js/dashboard.js"></script>
+  <footer>
+    <p>&copy; 2025 Botica Nova Salud - Todos los derechos reservados</p>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>

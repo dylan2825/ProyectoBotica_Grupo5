@@ -1,58 +1,122 @@
-/* Estilos Generales */
+/* Diseño Futurista para el Frontend */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #2b5876, #4e4376);
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h2, h3 {
-  color: #2e7d32;
+header {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 2px solid #ddd;
+}
+
+h1 {
+  font-size: 2.5em;
+  letter-spacing: 2px;
 }
 
 button {
-  background-color: #66bb6a;
+  padding: 15px 25px;
+  font-size: 18px;
+  background-color: #ff4e00;
   color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff704d;
+}
+
+button:focus {
+  outline: none;
+}
+
+button.btn-secondary {
+  background-color: #0d47a1;
+}
+
+button.btn-secondary:hover {
+  background-color: #1976d2;
+}
+
+button.btn-primary {
+  background-color: #00796b;
+}
+
+button.btn-primary:hover {
+  background-color: #004d40;
+}
+
+main {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  text-align: center;
   padding: 10px;
+}
+
+form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form input {
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+form button {
+  background-color: #00796b;
+  padding: 10px;
+  font-size: 1.2em;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #388e3c;
+form button:hover {
+  background-color: #004d40;
 }
 
-/* Estilos para el formulario */
-form {
-  background-color: #ffffff;
+ul.product-list {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+ul.product-list li {
+  background-color: rgba(0, 0, 0, 0.4);
+  margin: 10px 0;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  margin: auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
 }
 
-input, select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+ul.product-list li:hover {
+  transform: scale(1.05);
 }
 
-ul {
-  list-style-type: none;
+footer p {
+  font-size: 1em;
+  margin: 0;
 }
-
-li {
-  background-color: #ffffff;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.actions {
-  margin-top: 20px;
-}
-

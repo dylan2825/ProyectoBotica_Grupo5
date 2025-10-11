@@ -3,21 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bienvenido</title>
+  <title>Botica Nova Salud - Bienvenido</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <header>
+    <h1>Bienvenido a Botica Nova Salud</h1>
+    <p>Accede al Dashboard y descubre todos nuestros productos, ventas y clientes.</p>
+  </header>
 
-  <script>
-    // Verificar si el token JWT está en el localStorage
-    const token = localStorage.getItem('token');
-    
-    if (token) {
-      // Si hay un token, redirige al Dashboard
-      window.location.href = 'dashboard.html';
-    } else {
-      // Si no hay token, redirige al login
-      window.location.href = 'login.html';
-    }
-  </script>
+  <main>
+    <button onclick="window.location.href='dashboard.html'" class="btn-primary">Ir al Dashboard</button>
+    <button onclick="window.location.href='productos.html'" class="btn-secondary">Ver Productos</button>
+    <button onclick="window.location.href='ventas.html'" class="btn-secondary">Ver Ventas</button>
+    <button onclick="window.location.href='clientes.html'" class="btn-secondary">Ver Clientes</button>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Botica Nova Salud - Todos los derechos reservados</p>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>

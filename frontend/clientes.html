@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clientes - Botica Nova Salud</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Clientes</h1>
+    <button onclick="window.location.href='dashboard.html'" class="btn-secondary">Volver al Dashboard</button>
+  </header>
+
+  <main>
+    <h2>Lista de Clientes</h2>
+    <ul id="clientes-lista" class="product-list">
+      <!-- Los clientes se agregarán aquí dinámicamente -->
+    </ul>
+
+    <h3>Agregar Nuevo Cliente</h3>
+    <form id="form-cliente">
+      <input type="text" id="nombre" placeholder="Nombre" required>
+      <input type="text" id="apellido_paterno" placeholder="Apellido Paterno" required>
+      <input type="text" id="apellido_materno" placeholder="Apellido Materno">
+      <input type="text" id="numero_documento" placeholder="Número de Documento" required>
+      <input type="text" id="telefono" placeholder="Teléfono">
+      <input type="email" id="email" placeholder="Correo Electrónico" required>
+      <button type="submit" class="btn-primary">Agregar Cliente</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Botica Nova Salud - Todos los derechos reservados</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
