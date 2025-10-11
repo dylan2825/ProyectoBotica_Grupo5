@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ventas - Botica</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <h2>Ventas</h2>
+
+  <div>
+    <label for="fechaInicio">Fecha Inicio</label>
+    <input type="date" id="fechaInicio">
+
+    <label for="fechaFin">Fecha Fin</label>
+    <input type="date" id="fechaFin">
+
+    <button onclick="obtenerVentas()">Buscar Ventas</button>
+  </div>
+
+  <ul id="ventasLista">
+    <!-- Las ventas se mostrarán aquí -->
+  </ul>
+
+  <script src="js/ventas.js"></script>
+</body>
+</html>

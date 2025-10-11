@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Botica</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <h2>Dashboard - Botica</h2>
+
+  <div id="estadisticas" class="stats">
+    <div class="stat-item">
+      <h3>Ventas del Día</h3>
+      <p id="ventasHoy">Cargando...</p>
+    </div>
+    <div class="stat-item">
+      <h3>Productos con Stock Bajo</h3>
+      <p id="productosBajoStock">Cargando...</p>
+    </div>
+    <div class="stat-item">
+      <h3>Productos Más Vendidos</h3>
+      <ul id="productosMasVendidos">
+        <!-- Los productos más vendidos se cargarán aquí -->
+      </ul>
+    </div>
+    <div class="stat-item">
+      <h3>Alertas No Leídas</h3>
+      <p id="alertasPendientes">Cargando...</p>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button onclick="window.location.href='ventas.html'">Ver Ventas</button>
+    <button onclick="window.location.href='productos.html'">Gestionar Productos</button>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
