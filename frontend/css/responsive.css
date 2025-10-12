@@ -1,0 +1,147 @@
+/* Tablets */
+@media (max-width: 1024px) {
+    .main-container {
+        grid-template-columns: 220px 1fr;
+    }
+    
+    .ventas-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .dashboard-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablets pequeñas y móviles grandes */
+@media (max-width: 768px) {
+    .main-container {
+        grid-template-areas: 
+            "header"
+            "content";
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px 1fr;
+    }
+
+    .main-sidebar {
+        display: none;
+    }
+
+    .main-content {
+        padding: 16px;
+    }
+
+    .header-content {
+        padding: 0 16px;
+    }
+
+    .user-info {
+        display: none;
+    }
+
+    .user-role {
+        display: none;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .modal-content {
+        min-width: 95vw;
+        margin: 20px;
+    }
+
+    .ventas-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .cart-actions {
+        flex-direction: column;
+    }
+
+    .cliente-selector {
+        flex-direction: column;
+    }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 12px;
+    }
+    
+    .card {
+        padding: 16px;
+    }
+    
+    .btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .page-header p {
+        font-size: 1rem;
+    }
+    
+    .metric-card {
+        padding: 16px;
+    }
+    
+    .metric-icon {
+        font-size: 2rem;
+    }
+    
+    .metric-value {
+        font-size: 1.5rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.8rem;
+    }
+    
+    .table th,
+    .table td {
+        padding: 8px 12px;
+    }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 360px) {
+    .main-content {
+        padding: 8px;
+    }
+    
+    .card {
+        padding: 12px;
+    }
+    
+    .login-card {
+        padding: 24px;
+        margin: 10px;
+    }
+    
+    .header-content {
+        padding: 0 12px;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+}
