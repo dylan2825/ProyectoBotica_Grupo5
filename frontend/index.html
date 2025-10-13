@@ -3,44 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova Salud - Sistema de Gestión</title>
-    
-    <!-- CSS -->
+    <title>Nova Salud - Login</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/components/header.css">
-    <link rel="stylesheet" href="css/components/sidebar.css">
-    <link rel="stylesheet" href="css/components/modal.css">
-    <link rel="stylesheet" href="css/components/dashboard.css">
-    <link rel="stylesheet" href="css/components/ventas.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
-<body>
-    <!-- Container para pantalla de login -->
-    <div id="login-container" class="login-container"></div>
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo">
+                <h1>🏥 Nova Salud</h1>
+                <p>Sistema de Gestión Farmacéutica</p>
+            </div>
+        </div>
 
-    <!-- Layout principal (oculto inicialmente) -->
-    <div id="main-container" class="main-container hidden">
-        <header id="main-header" class="main-header"></header>
-        <aside id="main-sidebar" class="main-sidebar"></aside>
-        <main id="main-content" class="main-content">
-            <div id="view-container" class="view-container"></div>
-        </main>
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <input type="text" id="username" placeholder="Ingresa tu usuario" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-block">
+                    <span id="loginText">Ingresar al Sistema</span>
+                    <div class="loading-spinner" id="loginSpinner" style="display: none;"></div>
+                </button>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+        </form>
+
+        <div class="login-footer">
+            <div class="demo-accounts">
+                <h4>Cuentas de Demo:</h4>
+                <div class="account-list">
+                    <div class="account-item">
+                        <strong>Administrador:</strong> dmanrique / dylan123
+                    </div>
+                    <div class="account-item">
+                        <strong>Cajero:</strong> mgarcia / maria123
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Toast notifications -->
-    <div id="toast-container" class="toast-container"></div>
-
-    <!-- Scripts -->
-    <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
-    <script src="js/components/modal.js"></script>
-    <script src="js/components/notificaciones.js"></script>
-    <script src="js/components/tabla.js"></script>
-    <script src="js/modules/dashboard.js"></script>
-    <script src="js/modules/ventas.js"></script>
-    <script src="js/modules/inventario.js"></script>
-    <script src="js/modules/clientes.js"></script>
-    <script src="js/modules/alertas.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

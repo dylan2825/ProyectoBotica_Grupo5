@@ -1,0 +1,66 @@
+.login-body {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+}
+
+.login-container {
+    background: var(--white);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+}
+
+.login-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    padding: var(--spacing-2xl);
+    text-align: center;
+}
+
+.login-header .logo h1 {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--white);
+}
+
+.login-header .logo p {
+    opacity: 0.9;
+    font-size: var(--font-size-sm);
+}
+
+.login-form {
+    padding: var(--spacing-2xl);
+}
+
+.login-footer {
+    padding: var(--spacing-lg);
+    background-color: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+}
+
+.demo-accounts h4 {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+    margin-bottom: var(--spacing-sm);
+}
+
+.account-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.account-item {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+}
+
+.account-item strong {
+    color: var(--gray-700);
+}
