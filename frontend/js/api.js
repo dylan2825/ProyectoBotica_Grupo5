@@ -1,127 +1,86 @@
-class ApiService {
-    constructor() {
-        this.baseURL = 'http://localhost:3000/api';
-        this.token = null;
-    }
+// API communication layer
+class API {
+    static baseURL = 'http://localhost:3000';
 
-    setToken(token) {
-        this.token = token;
-    }
-
-    async request(endpoint, options = {}) {
-        const url = `${this.baseURL}${endpoint}`;
+    static async request(endpoint, options = {}) {
+        const token = AuthManager.getToken();
         
         const config = {
             headers: {
                 'Content-Type': 'application/json',
+                ...(token && { 'Authorization': `Bearer ${token}` }),
                 ...options.headers
             },
             ...options
         };
 
-        if (this.token) {
-            config.headers['Authorization'] = `Bearer ${this.token}`;
-        }
-
         try {
-            console.log('🔗 API Request:', url, config);
-            const response = await fetch(url, config);
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || `Error ${response.status}`);
+            const response = await fetch(`${this.baseURL}${endpoint}`, config);
+            
+            if (response.status === 401) {
+                // Token expirado
+                AuthManager.logout();
+                return;
             }
 
+            const data = await response.json();
             return data;
+            
         } catch (error) {
-            console.error('❌ API Error:', error);
-            throw error;
+            console.error('API Request failed:', error);
+            throw new Error('Error de conexión con el servidor');
         }
     }
 
-    async get(endpoint) {
-        return this.request(endpoint);
+    // Métodos específicos para cada endpoint
+    static async getProductos(search = '') {
+        const query = search ? `?search=${encodeURIComponent(search)}` : '';
+        return await this.request(`/api/productos${query}`);
     }
 
-    async post(endpoint, data) {
-        return this.request(endpoint, {
+    static async getProducto(id) {
+        return await this.request(`/api/productos/${id}`);
+    }
+
+    static async getClientes(search = '') {
+        const query = search ? `?search=${encodeURIComponent(search)}` : '';
+        return await this.request(`/api/clientes${query}`);
+    }
+
+    static async createCliente(clienteData) {
+        return await this.request('/api/clientes', {
             method: 'POST',
-            body: JSON.stringify(data)
+            body: JSON.stringify(clienteData)
         });
     }
 
-    async put(endpoint, data) {
-        return this.request(endpoint, {
-            method: 'PUT',
-            body: JSON.stringify(data)
+    static async procesarVenta(ventaData) {
+        return await this.request('/api/ventas', {
+            method: 'POST',
+            body: JSON.stringify(ventaData)
         });
     }
 
-    async delete(endpoint) {
-        return this.request(endpoint, {
-            method: 'DELETE'
+    static async getVentas(filters = {}) {
+        const queryParams = new URLSearchParams(filters).toString();
+        const query = queryParams ? `?${queryParams}` : '';
+        return await this.request(`/api/ventas${query}`);
+    }
+
+    static async getDashboardMetricas() {
+        return await this.request('/api/dashboard/metricas');
+    }
+
+    static async getAlertas(leidas = false) {
+        return await this.request(`/api/dashboard/alertas?leidas=${leidas}`);
+    }
+
+    static async marcarAlertaLeida(id) {
+        return await this.request(`/api/dashboard/alertas/${id}/leida`, {
+            method: 'PUT'
         });
-    }
-
-    // Auth endpoints
-    async login(credentials) {
-        return this.post('/auth/login', credentials);
-    }
-
-    async getProfile() {
-        return this.get('/auth/profile');
-    }
-
-    // Productos endpoints
-    async getProductos(params = {}) {
-        const queryString = new URLSearchParams(params).toString();
-        return this.get(`/productos${queryString ? `?${queryString}` : ''}`);
-    }
-
-    async getProducto(id) {
-        return this.get(`/productos/${id}`);
-    }
-
-    async updateStock(id, stockData) {
-        return this.put(`/productos/${id}/stock`, stockData);
-    }
-
-    // Ventas endpoints
-    async crearVenta(ventaData) {
-        return this.post('/ventas', ventaData);
-    }
-
-    async getVentas(params = {}) {
-        const queryString = new URLSearchParams(params).toString();
-        return this.get(`/ventas${queryString ? `?${queryString}` : ''}`);
-    }
-
-    // Clientes endpoints
-    async getClientes(params = {}) {
-        const queryString = new URLSearchParams(params).toString();
-        return this.get(`/clientes${queryString ? `?${queryString}` : ''}`);
-    }
-
-    async crearCliente(clienteData) {
-        return this.post('/clientes', clienteData);
-    }
-
-    async actualizarPuntos(id, puntosData) {
-        return this.put(`/clientes/${id}/puntos`, puntosData);
-    }
-
-    // Dashboard endpoints
-    async getMetricas() {
-        return this.get('/dashboard/metricas');
-    }
-
-    async getAlertas() {
-        return this.get('/dashboard/alertas');
-    }
-
-    async marcarAlertaLeida(id) {
-        return this.put(`/dashboard/alertas/${id}/leida`);
     }
 }
 
-const api = new ApiService();
+// Hacer disponible globalmente
+window.API = API;

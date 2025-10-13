@@ -1,0 +1,385 @@
+/* ===== DASHBOARD STYLES ===== */
+
+/* Header principal */
+.main-header {
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0;
+}
+
+.main-nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--gray-600);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* User menu */
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.user-info {
+    text-align: right;
+}
+
+.user-name {
+    display: block;
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+.user-role {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--gray-500);
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--danger-color);
+    color: var(--white);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Panel de notificaciones */
+.notifications-panel {
+    position: fixed;
+    top: 80px;
+    right: 2rem;
+    width: 350px;
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 1001;
+    display: none;
+}
+
+.notifications-panel.show {
+    display: block;
+}
+
+.notifications-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.notifications-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Contenido principal */
+.main-content {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Banner de bienvenida */
+.welcome-banner {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome-content h2 {
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.welcome-content p {
+    opacity: 0.9;
+    margin-bottom: 0;
+}
+
+/* Grid de métricas */
+.metrics-section {
+    margin-bottom: 2rem;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.metric-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--primary-color);
+}
+
+.metric-card.loading {
+    text-align: center;
+    color: var(--gray-500);
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.metric-label {
+    color: var(--gray-600);
+    font-size: var(--font-size-sm);
+}
+
+/* Grid de contenido */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Secciones */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h3 {
+    margin-bottom: 0;
+    color: var(--gray-800);
+}
+
+/* Alertas */
+.alertas-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.alerta-item {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--danger-color);
+    background: #fef2f2;
+}
+
+.alerta-item.warning {
+    border-left-color: var(--warning-color);
+    background: #fffbf0;
+}
+
+.alerta-item.info {
+    border-left-color: var(--primary-color);
+    background: #f0f9ff;
+}
+
+.alerta-content h4 {
+    margin-bottom: 0.25rem;
+    font-size: var(--font-size-base);
+}
+
+.alerta-content p {
+    color: var(--gray-600);
+    font-size: var(--font-size-sm);
+    margin-bottom: 0.5rem;
+}
+
+.alerta-time {
+    font-size: var(--font-size-xs);
+    color: var(--gray-500);
+}
+
+/* Productos más vendidos */
+.products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--gray-50);
+    border-radius: var(--border-radius);
+}
+
+.product-info h4 {
+    margin-bottom: 0.25rem;
+    font-size: var(--font-size-base);
+}
+
+.product-info .sales-count {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+}
+
+.product-sales {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Acciones rápidas */
+.actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.action-btn {
+    background: var(--gray-50);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    border-color: var(--primary-color);
+    background: var(--white);
+    transform: translateY(-2px);
+}
+
+.action-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.action-btn span {
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+/* Resumen de ventas */
+.sales-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    text-align: center;
+}
+
+.sales-metric .metric-value {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+/* Estados de carga */
+.loading-state {
+    text-align: center;
+    padding: 2rem;
+    color: var(--gray-500);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .main-nav {
+        gap: 0.5rem;
+    }
+    
+    .nav-link {
+        padding: 0.5rem;
+        font-size: var(--font-size-sm);
+    }
+    
+    .welcome-banner {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sales-metrics {
+        grid-template-columns: 1fr;
+    }
+}

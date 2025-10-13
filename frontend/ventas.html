@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto de Venta - Nova Salud</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/ventas.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo">
+                    <h1>🏥 Nova Salud</h1>
+                </div>
+                <nav class="main-nav">
+                    <a href="dashboard.html" class="nav-link">📊 Dashboard</a>
+                    <a href="ventas.html" class="nav-link active">💰 Ventas</a>
+                    <a href="productos.html" class="nav-link">🛍️ Productos</a>
+                    <a href="clientes.html" class="nav-link">👥 Clientes</a>
+                    <a href="inventario.html" class="nav-link">📦 Inventario</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="user-menu">
+                    <span class="user-name" id="userName"></span>
+                    <button class="btn btn-secondary btn-sm" onclick="logout()">Salir</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="ventas-main">
+        <div class="ventas-container">
+            <!-- Panel izquierdo: Búsqueda y productos -->
+            <div class="ventas-panel left-panel">
+                <div class="search-section">
+                    <div class="search-header">
+                        <h2>🛍️ Punto de Venta</h2>
+                        <div class="sale-info">
+                            <span id="currentSale">Venta #--</span>
+                            <span id="saleTime"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="search-box">
+                        <input type="text" id="productSearch" 
+                               placeholder="🔍 Buscar producto por nombre o código..." 
+                               autocomplete="off">
+                        <div class="search-results" id="searchResults"></div>
+                    </div>
+                </div>
+
+                <div class="products-section">
+                    <div class="section-header">
+                        <h3>Productos Disponibles</h3>
+                        <span id="productsCount">0 productos</span>
+                    </div>
+                    <div class="products-grid" id="productsGrid">
+                        <div class="loading-state">
+                            <div class="loading-spinner"></div>
+                            <p>Cargando productos...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel derecho: Carrito y resumen -->
+            <div class="ventas-panel right-panel">
+                <div class="cart-section">
+                    <div class="cart-header">
+                        <h3>🛒 Carrito de Compra</h3>
+                        <button class="btn btn-secondary btn-sm" onclick="clearCart()">
+                            Limpiar
+                        </button>
+                    </div>
+                    
+                    <div class="cart-items" id="cartItems">
+                        <div class="empty-cart">
+                            <div class="empty-icon">🛒</div>
+                            <p>El carrito está vacío</p>
+                            <small>Agrega productos para comenzar la venta</small>
+                        </div>
+                    </div>
+
+                    <div class="cart-summary">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">S/ 0.00</span>
+                        </div>
+                        <div class="summary-row discount-row">
+                            <div class="discount-control">
+                                <label>Descuento:</label>
+                                <input type="number" id="descuento" min="0" step="0.01" 
+                                       placeholder="0.00" value="0">
+                            </div>
+                        </div>
+                        <div class="summary-row total-row">
+                            <span><strong>Total:</strong></span>
+                            <span id="total" class="total-amount">S/ 0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="customer-section">
+                    <div class="section-header">
+                        <h3>👤 Cliente</h3>
+                        <button class="btn btn-link btn-sm" onclick="showCustomerModal()">
+                            Buscar
+                        </button>
+                    </div>
+                    
+                    <div class="customer-info" id="customerInfo">
+                        <div class="no-customer">
+                            <span>Cliente no seleccionado</span>
+                            <small>Venta anónima</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions-section">
+                    <button class="btn btn-primary btn-lg btn-block" 
+                            id="processSaleBtn" 
+                            onclick="processSale()" 
+                            disabled>
+                        💰 Procesar Venta
+                    </button>
+                    
+                    <div class="quick-actions">
+                        <button class="btn btn-secondary" onclick="quickActions()">
+                            ⚡ Acciones Rápidas
+                        </button>
+                        <button class="btn btn-secondary" onclick="printReceipt()">
+                            🖨️ Imprimir Ticket
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de cliente -->
+    <div class="modal" id="customerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Buscar Cliente</h3>
+                <button class="btn btn-icon" onclick="closeCustomerModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="search-box">
+                    <input type="text" id="customerSearch" 
+                           placeholder="🔍 Buscar por nombre, DNI...">
+                </div>
+                <div class="customers-list" id="customersList">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Buscando clientes...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ventas.js"></script>
+</body>
+</html>

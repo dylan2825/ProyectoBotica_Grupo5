@@ -1,75 +1,84 @@
-class AuthService {
-    constructor() {
-        this.tokenKey = 'nova_salud_token';
-        this.userKey = 'nova_salud_user';
+// Manejo de autenticación y tokens
+class AuthManager {
+    static getToken() {
+        return localStorage.getItem('token');
     }
 
-    setAuthData(token, userData) {
-        localStorage.setItem(this.tokenKey, token);
-        localStorage.setItem(this.userKey, JSON.stringify(userData));
-        api.setToken(token);
+    static getUser() {
+        const user = localStorage.getItem('user');
+        return user ? JSON.parse(user) : null;
     }
 
-    getToken() {
-        return localStorage.getItem(this.tokenKey);
+    static isAuthenticated() {
+        return !!this.getToken();
     }
 
-    getUserData() {
-        const userData = localStorage.getItem(this.userKey);
-        return userData ? JSON.parse(userData) : null;
+    static login(token, user) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
     }
 
-    getUserRole() {
-        const userData = this.getUserData();
-        return userData?.rol || null;
+    static logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = 'index.html';
     }
 
-    async login(username, password) {
-        try {
-            console.log('🔐 Intentando login con:', username);
-            
-            const result = await api.login({ username, password });
-            
-            if (result.success) {
-                this.setAuthData(result.data.token, result.data.user);
-                console.log('✅ Login exitoso');
-                return { success: true };
-            } else {
-                console.log('❌ Login fallido:', result.error);
-                return { success: false, error: result.error };
-            }
-        } catch (error) {
-            console.error('🚨 Error de conexión:', error);
-            return { 
-                success: false, 
-                error: 'No se puede conectar al servidor. Verifica que el backend esté corriendo en http://localhost:3000' 
-            };
-        }
-    }
-
-    async validateToken() {
-        const token = this.getToken();
-        if (!token) return false;
-
-        try {
-            const result = await api.getProfile();
-            return result.success;
-        } catch (error) {
-            console.error('Token validation error:', error);
-            this.logout();
+    static requireAuth() {
+        if (!this.isAuthenticated()) {
+            window.location.href = 'index.html';
             return false;
         }
-    }
-
-    logout() {
-        localStorage.removeItem(this.tokenKey);
-        localStorage.removeItem(this.userKey);
-        api.setToken(null);
-    }
-
-    isAuthenticated() {
-        return !!this.getToken();
+        return true;
     }
 }
 
-const auth = new AuthService();
+// Manejo del formulario de login
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    
+    if (loginForm) {
+        loginForm.addEventListener('submit', handleLogin);
+    }
+});
+
+async function handleLogin(e) {
+    e.preventDefault();
+    
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const errorMessage = document.getElementById('errorMessage');
+    const loginText = document.getElementById('loginText');
+    const loginSpinner = document.getElementById('loginSpinner');
+    
+    // Reset estados
+    errorMessage.classList.remove('show');
+    loginText.style.display = 'none';
+    loginSpinner.style.display = 'block';
+    
+    try {
+        const response = await fetch('http://localhost:3000/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            AuthManager.login(data.token, data.user);
+            window.location.href = 'dashboard.html';
+        } else {
+            throw new Error(data.error || 'Error en el login');
+        }
+        
+    } catch (error) {
+        errorMessage.textContent = error.message;
+        errorMessage.classList.add('show');
+    } finally {
+        loginText.style.display = 'block';
+        loginSpinner.style.display = 'none';
+    }
+}

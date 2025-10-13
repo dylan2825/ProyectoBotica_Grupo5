@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Nova Salud</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Header estilo Mifarma -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo">
+                    <h1>🏥 Nova Salud</h1>
+                </div>
+                <nav class="main-nav">
+                    <a href="dashboard.html" class="nav-link active">📊 Dashboard</a>
+                    <a href="ventas.html" class="nav-link">💰 Ventas</a>
+                    <a href="productos.html" class="nav-link">🛍️ Productos</a>
+                    <a href="clientes.html" class="nav-link">👥 Clientes</a>
+                    <a href="inventario.html" class="nav-link">📦 Inventario</a>
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="user-menu">
+                    <div class="user-info">
+                        <span class="user-name" id="userName">Cargando...</span>
+                        <span class="user-role" id="userRole"></span>
+                    </div>
+                    <div class="user-actions">
+                        <button class="btn btn-icon" onclick="toggleNotifications()">
+                            🔔 <span class="notification-badge" id="notificationCount">0</span>
+                        </button>
+                        <button class="btn btn-secondary btn-sm" onclick="logout()">Cerrar Sesión</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Notificaciones flotantes -->
+    <div class="notifications-panel" id="notificationsPanel">
+        <div class="notifications-header">
+            <h3>Notificaciones</h3>
+            <button class="btn btn-icon" onclick="toggleNotifications()">✕</button>
+        </div>
+        <div class="notifications-list" id="notificationsList">
+            <!-- Las alertas se cargarán aquí -->
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Banner de bienvenida -->
+            <section class="welcome-banner">
+                <div class="welcome-content">
+                    <h2>Bienvenido, <span id="welcomeName">Usuario</span> 👋</h2>
+                    <p>Resumen de las operaciones del día</p>
+                </div>
+                <div class="welcome-actions">
+                    <button class="btn btn-primary" onclick="quickSale()">
+                        💰 Nueva Venta Rápida
+                    </button>
+                </div>
+            </section>
+
+            <!-- Métricas principales -->
+            <section class="metrics-section">
+                <h3>Métricas del Día</h3>
+                <div class="metrics-grid" id="metricsGrid">
+                    <div class="metric-card loading">
+                        <div class="loading-spinner"></div>
+                        <p>Cargando métricas...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grid de contenido -->
+            <div class="content-grid">
+                <!-- Alertas urgentes -->
+                <section class="alertas-section card">
+                    <div class="section-header">
+                        <h3>🚨 Alertas Urgentes</h3>
+                        <button class="btn btn-link" onclick="viewAllAlerts()">Ver todas</button>
+                    </div>
+                    <div class="alertas-list" id="alertasList">
+                        <div class="loading-state">
+                            <div class="loading-spinner"></div>
+                            <p>Cargando alertas...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Productos más vendidos -->
+                <section class="top-products card">
+                    <div class="section-header">
+                        <h3>🏆 Productos Más Vendidos</h3>
+                        <span>Última semana</span>
+                    </div>
+                    <div class="products-list" id="topProductsList">
+                        <div class="loading-state">
+                            <div class="loading-spinner"></div>
+                            <p>Cargando productos...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Acciones rápidas -->
+                <section class="quick-actions card">
+                    <div class="section-header">
+                        <h3>⚡ Acciones Rápidas</h3>
+                    </div>
+                    <div class="actions-grid">
+                        <button class="action-btn" onclick="navigateTo('ventas')">
+                            <div class="action-icon">💰</div>
+                            <span>Nueva Venta</span>
+                        </button>
+                        <button class="action-btn" onclick="navigateTo('productos')">
+                            <div class="action-icon">🛍️</div>
+                            <span>Gestionar Productos</span>
+                        </button>
+                        <button class="action-btn" onclick="navigateTo('clientes')">
+                            <div class="action-icon">👥</div>
+                            <span>Clientes</span>
+                        </button>
+                        <button class="action-btn" onclick="navigateTo('inventario')">
+                            <div class="action-icon">📦</div>
+                            <span>Inventario</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Resumen de ventas -->
+                <section class="sales-summary card">
+                    <div class="section-header">
+                        <h3>📈 Resumen de Ventas</h3>
+                        <span>Hoy</span>
+                    </div>
+                    <div class="sales-metrics" id="salesMetrics">
+                        <div class="sales-metric">
+                            <div class="metric-value" id="todaySales">0</div>
+                            <div class="metric-label">Ventas</div>
+                        </div>
+                        <div class="sales-metric">
+                            <div class="metric-value" id="todayRevenue">S/ 0.00</div>
+                            <div class="metric-label">Ingresos</div>
+                        </div>
+                        <div class="sales-metric">
+                            <div class="metric-value" id="avgTicket">S/ 0.00</div>
+                            <div class="metric-label">Ticket Promedio</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
