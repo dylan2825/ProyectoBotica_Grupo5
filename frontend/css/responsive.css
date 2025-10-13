@@ -1,0 +1,362 @@
+/* responsive.css - Media queries para diseño responsive */
+/* Corregido y compatible con tu estructura */
+
+/* ===== TABLETS (768px a 1024px) ===== */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .header-nav {
+        gap: 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+    
+    /* Ajustes específicos para tablas */
+    .table-actions {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* ===== MÓVILES (768px hacia abajo) ===== */
+@media (max-width: 768px) {
+    /* Layout principal */
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 50;
+        width: 280px;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 40;
+        display: none;
+    }
+    
+    .overlay.active {
+        display: block;
+    }
+    
+    /* Header */
+    .header {
+        padding: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .header-actions {
+        order: 3;
+        width: 100%;
+        margin-top: 1rem;
+        justify-content: space-between;
+    }
+    
+    /* Stats grid */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* Cards */
+    .card {
+        margin-bottom: 1rem;
+        border-radius: 6px;
+    }
+    
+    .card-header {
+        padding: 1rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .card-footer {
+        padding: 0.75rem 1rem;
+    }
+    
+    /* Tablas */
+    .table {
+        font-size: 0.75rem;
+    }
+    
+    .table-responsive {
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+    }
+    
+    .table th,
+    .table td {
+        padding: 0.5rem;
+    }
+    
+    /* Forms */
+    .form-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.75rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    /* Botones */
+    .btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-group .btn {
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Search y filtros */
+    .search-box {
+        min-width: 200px;
+        width: 100%;
+    }
+    
+    .filter-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    /* Modal adjustments */
+    .modal-content {
+        margin: 1rem;
+        padding: 1rem;
+        width: calc(100% - 2rem);
+    }
+    
+    /* Notification adjustments */
+    .notification {
+        left: 1rem;
+        right: 1rem;
+        max-width: none;
+    }
+    
+    /* Clientes específico */
+    .cliente-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .cliente-avatar {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1rem;
+    }
+    
+    /* Productos específico */
+    .producto-info {
+        text-align: center;
+    }
+    
+    .producto-info strong {
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+    
+    .producto-info small {
+        font-size: 0.7rem;
+    }
+}
+
+/* ===== MÓVILES PEQUEÑOS (480px hacia abajo) ===== */
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0.75rem;
+    }
+    
+    .header-brand {
+        text-align: center;
+    }
+    
+    .header-actions {
+        order: 0;
+        margin-top: 0;
+    }
+    
+    .clientes-header,
+    .inventario-header,
+    .reportes-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+    
+    .clientes-actions,
+    .inventario-actions,
+    .reportes-actions {
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+        min-width: auto;
+    }
+    
+    .search-box {
+        min-width: 150px;
+    }
+    
+    /* Modal adjustments */
+    .modal-content {
+        margin: 0.5rem;
+        padding: 0.75rem;
+        width: calc(100% - 1rem);
+    }
+    
+    /* Notification adjustments */
+    .notification {
+        left: 0.5rem;
+        right: 0.5rem;
+        top: 0.5rem;
+    }
+    
+    .notification-content {
+        padding: 0.75rem;
+    }
+    
+    /* Tablas muy pequeñas */
+    .table {
+        font-size: 0.7rem;
+    }
+    
+    .table th,
+    .table td {
+        padding: 0.25rem;
+    }
+    
+    /* Cards muy pequeñas */
+    .card-header {
+        padding: 0.75rem;
+    }
+    
+    .card-body {
+        padding: 0.75rem;
+    }
+    
+    .card-title {
+        font-size: 1rem;
+    }
+}
+
+/* ===== ORIENTACIÓN LANDSCAPE ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .sidebar {
+        overflow-y: auto;
+        height: 100vh;
+    }
+    
+    .modal-content {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .main-content {
+        height: 100vh;
+        overflow-y: auto;
+    }
+}
+
+/* ===== IMPRESIÓN ===== */
+@media print {
+    .sidebar,
+    .header,
+    .btn,
+    .header-actions,
+    .mobile-menu-btn {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin: 0 !important;
+        width: 100% !important;
+    }
+    
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+        break-inside: avoid;
+    }
+    
+    .table {
+        border: 1px solid #000 !important;
+    }
+    
+    .table th,
+    .table td {
+        border: 1px solid #000 !important;
+        padding: 0.25rem;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+}
+
+/* ===== HIGH DPI DISPLAYS ===== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .card {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn {
+        border-width: 1px;
+    }
+}
+
+/* ===== DARK MODE SUPPORT (opcional) ===== */
+@media (prefers-color-scheme: dark) {
+    /* Puedes agregar soporte para dark mode aquí si lo necesitas */
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Ventas - Botica Nova Salud</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Botica Nova</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="ventas.html" class="nav-item">
+                    <span>💰</span> Punto de Venta
+                </a>
+                <a href="productos.html" class="nav-item">
+                    <span>🛍️</span> Productos
+                </a>
+                <a href="clientes.html" class="nav-item">
+                    <span>👥</span> Clientes
+                </a>
+                <a href="inventario.html" class="nav-item">
+                    <span>📦</span> Inventario
+                </a>
+                <a href="ventas-historial.html" class="nav-item active">
+                    <span>📋</span> Historial Ventas
+                </a>
+                <a href="reportes.html" class="nav-item">
+                    <span>📈</span> Reportes
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Historial de Ventas</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-menu">
+                        <span>Usuario</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Filtros -->
+                <div class="card">
+                    <div class="filtros-historial">
+                        <input type="date" id="fechaInicio" class="form-control">
+                        <input type="date" id="fechaFin" class="form-control">
+                        <input type="text" id="buscarVenta" class="form-control" placeholder="Buscar por cliente o producto...">
+                        <button class="btn-primary" onclick="filtrarVentas()">Filtrar</button>
+                        <button class="btn-secondary" onclick="limpiarFiltros()">Limpiar</button>
+                    </div>
+                </div>
+
+                <!-- Resumen -->
+                <div class="grid-3">
+                    <div class="card">
+                        <h4>Total Período</h4>
+                        <div class="stat-number" id="totalPeriodo">S/ 0.00</div>
+                    </div>
+                    <div class="card">
+                        <h4>Ventas Realizadas</h4>
+                        <div class="stat-number" id="totalVentasPeriodo">0</div>
+                    </div>
+                    <div class="card">
+                        <h4>Promedio por Venta</h4>
+                        <div class="stat-number" id="promedioVenta">S/ 0.00</div>
+                    </div>
+                </div>
+
+                <!-- Lista de Ventas -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Registro de Ventas</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="tablaVentas">
+                            <thead>
+                                <tr>
+                                    <th>ID Venta</th>
+                                    <th>Fecha</th>
+                                    <th>Cliente</th>
+                                    <th>Productos</th>
+                                    <th>Total</th>
+                                    <th>Vendedor</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historialVentasBody">
+                                <!-- Datos cargados dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detalle Venta -->
+    <div id="modalDetalleVenta" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3>Detalle de Venta #<span id="detalleVentaId"></span></h3>
+                <span class="close" onclick="cerrarModalDetalle()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="detalleVentaContenido">
+                    <!-- Detalles cargados dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ventas-historial.js"></script>
+</body>
+</html>
